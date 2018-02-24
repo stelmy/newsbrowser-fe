@@ -1,13 +1,5 @@
 'use strict';
 
-/**
- * @ngdoc overview
- * @name newsbrowserFeApp
- * @description
- * # newsbrowserFeApp
- *
- * Main module of the application.
- */
 angular
   .module('newsbrowserFeApp', [
     'ngAnimate',

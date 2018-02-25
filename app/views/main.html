@@ -1,23 +1,37 @@
+<div>
+	<div class="row">
+		<label>Wybrana kategoria: </label> {{ currentCategory.name }}
+	</div>
+	<div class="row">
+		<select data-ng-model="currentCategory"
+			data-ng-options="category as category.name for category in categories">
+		</select>
+
+		<button data-ng-click="loadArticles(currentCategory)">Wyświetl</button>
+	</div>
+</div>
+
 <div data-ng-repeat="article in articles">
 	<div class="row">
 		<h3>{{ article.title }}</h3>
 	</div>
 	<div class="row">
 
-		<img style="float: left; padding: 5px;" src="{{ article.imageUrl }}"
-			width="160" height="120" data-ng-show="{{ article.imageUrl }}" />
+		<img style="float: left; padding: 5px;"
+			data-ng-src="{{ getImageUrl(article) }}" width="160" height="120"
+			data-ng-show="article.imageUrl" />
 		<p>
-			<label>Autor: </label>
-			{{ article.author ? article.author : 'nieznany'}}
+			<label>Autor: </label> {{ article.author ? article.author :
+			'nieznany'}}
 		</p>
 		<p>
-			<label>Źródło: </label>
-			{{article.sourceName ? article.sourceName : 'nieznane'}}
+			<label>Źródło: </label> {{article.sourceName ? article.sourceName :
+			'nieznane'}}
 		</p>
 		<p>{{ article.description }}</p>
 		<p>
-			<a href="{{article.articleUrl}}"
-				data-ng-show="{{ article.articleUrl }}">Zobacz więcej</a>
+			<a data-ng-href="{{getArticleUrl(article)}}"
+				data-ng-show="article.articleUrl">Zobacz więcej</a>
 		</p>
 	</div>
 </div>

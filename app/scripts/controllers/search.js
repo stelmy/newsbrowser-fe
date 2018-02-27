@@ -18,6 +18,7 @@ angular.module('newsbrowserFeApp').controller('SearchCtrl',
         }
         
         if ($scope.query) {
+		  $scope.lastQuery = $scope.query;
           NewsService.searchArticles($scope.query, $scope.page).then(function(response) {
             $scope.articles = response.articles;
             $scope.totalPages = response.totalPages;
@@ -27,8 +28,8 @@ angular.module('newsbrowserFeApp').controller('SearchCtrl',
 
       $scope.previous = function() {
 	    $scope.page -= 1;
-        if ($scope.query) {
-          NewsService.searchArticles($scope.query, $scope.page).then(function(response) {
+        if ($scope.lastQuery) {
+          NewsService.searchArticles($scope.lastQuery, $scope.page).then(function(response) {
             $scope.articles = response.articles;
             $scope.totalPages = response.totalPages;
           });
@@ -37,8 +38,8 @@ angular.module('newsbrowserFeApp').controller('SearchCtrl',
 
       $scope.next = function() {
 	    $scope.page += 1;
-        if ($scope.query) {
-          NewsService.searchArticles($scope.query, $scope.page).then(function(response) {
+        if ($scope.lastQuery) {
+          NewsService.searchArticles($scope.lastQuery, $scope.page).then(function(response) {
             $scope.articles = response.articles;
             $scope.totalPages = response.totalPages;
           });
